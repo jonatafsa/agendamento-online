@@ -1,3 +1,9 @@
+![GitHub repo size](https://img.shields.io/github/repo-size/jonatafsa/agendamento-online?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/jonatafsa/agendamento-online?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/jonatafsa/agendamento-online?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/jonatafsa/agendamento-online?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/jonatafsa/agendamento-online?style=for-the-badge)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
