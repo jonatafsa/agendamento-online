@@ -1,0 +1,48 @@
+  $hue1: 270;
+  $hue2: 47;
+  $hue3: 175;
+  $maincolor1: hsl(var($hue1), 100%, 60%);
+  $maincolor1: hsl(var($hue1), 100%, 60%);
+  $maincolordark1: hsl(var($hue1), 69%, 50%);
+  $maincolor2: hsl(var($hue2), 100%, 61%);
+  $maincolordark2: hsl(var($hue2), 82%, 55%);
+  $maincolor3: hsl(var($hue3), 100%, 37%);
+  $maincolordark3: hsl(var($hue3), 82%, 55%);
+  $sectionpadding: 7rem;
+  $yellow: #feb60a;
+  $red: #ff0062;
+  $blue: #00dbf9;
+  $violet: #da00f7;
+
+  $bgcolor: var(--head-color);
+  $bgcolor1: hsl(var($hue1), 21%, 11%);
+  $bgcolor2: hsl(var($hue1), 23%, 19%);
+  $bgcolor3: hsl(var($hue1), 23%, 24%);
+  $bgcolortransparent: hsla(var($hue1), 23%, 19%, 0.6);
+  $headingcolor: hsl(var($hue1), 100%, 95%);
+  $textcolor: hsl(var($hue1), 14%, 81%);
+
+  :export {
+    hue1: $hue1;
+    hue2: $hue2;
+    hue3: $hue3;
+    maincolor1: $maincolor1;
+    maincolor1: $maincolor1;
+    maincolordark1: $maincolordark1;
+    maincolor2: $maincolor2;
+    maincolordark2: $maincolordark2;
+    maincolor3: $maincolor3;
+    maincolordark3: $maincolordark3;
+    sectionpadding: $sectionpadding;
+    yellow: $yellow;
+    red: $red;
+    blue: $blue;
+    violet: $violet;
+    bgcolor: $bgcolor;
+    bgcolor1: $bgcolor1;
+    bgcolor2: $bgcolor2;
+    bgcolor3: $bgcolor3;
+    bgcolortransparent: $bgcolortransparent;
+    headingcolor: $headingcolor;
+    textcolor: $textcolor;
+  }

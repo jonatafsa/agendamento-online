@@ -1,0 +1,27 @@
+    .footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 2rem;
+      width: 100%;
+      margin-bottom: 3.75rem;
+
+      p {
+        width: fit-content;
+        font-size: .75rem;
+        font-weight: 200;
+        padding: 0;
+
+        b {
+          font-weight: 600;
+        }
+      }
+
+      .links {
+        display: flex;
+        gap: .5rem;
+        color: var(--main-color-1);
+        font-size: .75rem;
+        font-weight: 400;
+      }
+    }

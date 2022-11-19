@@ -1,0 +1,63 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+generator erd {
+    provider = "prisma-erd-generator"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+}
+
+model users {
+    id        String   @id @default(uuid())
+    username  String   @unique
+    email     String   @unique
+    password  String
+    name      String
+    job       String
+    jobTime   String?
+    price     Int?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    schedules schedule[]
+}
+
+model schedule {
+    id        String   @id @default(cuid())
+    date      DateTime
+    createdAt DateTime @default(now())
+    users     users    @relation(fields: [usersId], references: [id])
+    usersId   String
+
+    scheduleDetails scheduleDetails[]
+    availableTimes  avaliableTimes[]
+}
+
+model avaliableTimes {
+    id         String  @id @default(cuid())
+    time       String
+    available  Boolean @default(true)
+    scheduleId String
+
+    schedule        schedule          @relation(fields: [scheduleId], references: [id])
+    scheduleDetails scheduleDetails[]
+}
+
+model scheduleDetails {
+    id           String  @id @default(cuid())
+    clientName   String
+    clientTel    String
+    clientMail   String?
+    clientAvatar String?
+    clientMemo   String?
+
+    schedule   schedule? @relation(fields: [scheduleId], references: [id])
+    scheduleId String?
+
+    avaliableTimes   avaliableTimes? @relation(fields: [avaliableTimesId], references: [id])
+    avaliableTimesId String          @unique
+}

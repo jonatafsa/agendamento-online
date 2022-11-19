@@ -1,0 +1,119 @@
+.navigation {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: var(--main-color-1);
+  height: 3rem;
+  z-index: 97;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border-radius: 0 0 .5rem .5rem;
+  overflow: hidden;
+
+  ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin: 0.5rem;
+        stroke: var(--text-color-dark);
+        stroke-width: 1.5px;
+      }
+    }
+  }
+
+  .active {
+    svg {
+      fill: var(--bg-color-1);
+      stroke: var(--bg-color-1);
+    }
+  }
+}
+
+.user__navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--bg-color);
+  height: 3.35rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 97;
+  // box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  overflow: hidden;
+  transition: .3s ease;
+
+  .user {
+    margin-left: 1rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    // border: 2px solid var(--main-color-2);
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .notification {
+    margin-right: 1rem;
+    width: 2.5rem;
+    height: 1.7rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      margin: 0.5rem;
+      stroke: var(--text-color)
+    }
+
+    .alerts {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: var(--main-color-2);
+      height: 1rem;
+      width: 1rem;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.8rem;
+      color: rgb(0, 0, 0);
+      font-size: .7rem;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  .active {
+    svg {
+      fill: var(--yellow);
+      stroke: var(--bg-color-1);
+    }
+
+    .alerts {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+}
