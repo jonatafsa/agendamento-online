@@ -255,7 +255,7 @@ export default function Home() {
       <Nav />
 
       <main>
-        <h1>Selecione uma data e hora 📆</h1>
+        <h1 style={{ marginTop: "4rem" }}>Selecione uma data e hora 📆</h1>
 
         <div className={styles.calendar}>
           <div className={styles.calendarHeader}>

@@ -20,6 +20,11 @@ export default async function handler(
       job: true,
       jobTime: true,
       price: true,
+      address: true,
+      avatar: true,
+      description: true,
+      username: true,
+
       schedules: {
         include: {
           availableTimes: true,
