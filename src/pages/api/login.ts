@@ -15,19 +15,18 @@ export default async function handler(
     const user = await prisma.users.findUniqueOrThrow({
       where: {
         username: req.body.username,
-      }
-    })
+      },
+    });
 
     if (user.password !== req.body.password) {
       throw new Error("Senha incorreta", {
         cause: "password",
-      })
+      });
     }
 
     const token = await createToken(user);
     res.status(200).json({ message: "Logado com sucesso", token });
   } catch (error: any) {
-
     if (error.cause === "password") {
       res.status(401).json({ message: error.message, target: error.cause });
     }
@@ -48,7 +47,6 @@ async function createToken(user: any) {
   };
 
   const token = process.env.JWT_SECRET!;
-
   return jwt.sign(payload, token, {
     expiresIn: "2d",
   });
