@@ -8,6 +8,7 @@ import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/adventurer-neutral';
 import Head from "next/head"
 import Image from "next/image"
+import { PriceMask } from "../services/masks"
 
 interface Days {
   day: number
@@ -295,11 +296,6 @@ export default function User() {
       })
   }
 
-  const getVariant = (i: number) => {
-    const variant = String(Math.floor(Math.random() * i + 1))
-    return [`variant${Number(variant) < 9 ? `0${variant}` : variant}`]
-  }
-
   let avatar = createAvatar(style, { dataUri: true })
 
   return (
@@ -355,7 +351,7 @@ export default function User() {
               <svg width="28" height="22" viewBox="0 0 28 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.875 18.0312C0.875 18.9015 1.2207 19.7361 1.83606 20.3514C2.45141 20.9668 3.28601 21.3125 4.15625 21.3125H23.8438C24.714 21.3125 25.5486 20.9668 26.1639 20.3514C26.7793 19.7361 27.125 18.9015 27.125 18.0312V9.00781H0.875V18.0312ZM4.74219 13.5781C4.74219 13.1119 4.92738 12.6648 5.25704 12.3352C5.58669 12.0055 6.0338 11.8203 6.5 11.8203H9.3125C9.7787 11.8203 10.2258 12.0055 10.5555 12.3352C10.8851 12.6648 11.0703 13.1119 11.0703 13.5781V14.75C11.0703 15.2162 10.8851 15.6633 10.5555 15.993C10.2258 16.3226 9.7787 16.5078 9.3125 16.5078H6.5C6.0338 16.5078 5.58669 16.3226 5.25704 15.993C4.92738 15.6633 4.74219 15.2162 4.74219 14.75V13.5781ZM23.8438 0.6875H4.15625C3.28601 0.6875 2.45141 1.0332 1.83606 1.64856C1.2207 2.26391 0.875 3.09851 0.875 3.96875V5.49219H27.125V3.96875C27.125 3.09851 26.7793 2.26391 26.1639 1.64856C25.5486 1.0332 24.714 0.6875 23.8438 0.6875Z" fill="#515151" />
               </svg>
-              {data.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+              {PriceMask(data.price)}
             </p>
           )}
 
