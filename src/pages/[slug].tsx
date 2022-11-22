@@ -300,17 +300,7 @@ export default function User() {
     return [`variant${Number(variant) < 9 ? `0${variant}` : variant}`]
   }
 
-  let avatar = createAvatar(style, {
-    seed: 'custom-seed',
-    // ... and other options
-    dataUri: true,
-    mouth: getVariant(30),
-    eyebrows: getVariant(10),
-    eyes: getVariant(26),
-    // backgroundColor: getVariant(5),
-  });
-
-  console.log(getVariant(26))
+  let avatar = createAvatar(style, { dataUri: true })
 
   return (
     <div className={styles.container}>
