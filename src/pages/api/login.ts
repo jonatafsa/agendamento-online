@@ -9,7 +9,6 @@ export default async function handler(
 ) {
   // Process a POST request
   const prisma = new PrismaClient();
-  console.log(req.body);
 
   try {
     const user = await prisma.users.findUniqueOrThrow({
