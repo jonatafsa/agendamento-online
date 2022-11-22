@@ -297,7 +297,7 @@ export default function User() {
 
   const getVariant = (i: number) => {
     const variant = String(Math.floor(Math.random() * i + 1))
-    return [`variant${variant}`]
+    return [`variant${Number(variant) < 9 ? `0${variant}` : variant}`]
   }
 
   let avatar = createAvatar(style, {
@@ -309,6 +309,8 @@ export default function User() {
     eyes: getVariant(26),
     // backgroundColor: getVariant(5),
   });
+
+  console.log(getVariant(26))
 
   return (
     <div className={styles.container}>
