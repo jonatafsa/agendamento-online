@@ -58,7 +58,7 @@ export default function User() {
     const param = window.location.pathname.split("/")[1]
 
     // This is where you would fetch the data from the API
-    fetch(`/api/get-shedule?user=${param}`, { cache: 'no-cache' })
+    fetch(`http://localhost:3333/get-shedule?user=${param}`, { cache: 'no-cache' })
       .then((res) => res.json())
       .then((data) => {
         // Do something with the data
@@ -275,7 +275,7 @@ export default function User() {
     }
 
 
-    fetch('/api/insert-appointment', {
+    fetch('http://localhost:3333/insert-appointment', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

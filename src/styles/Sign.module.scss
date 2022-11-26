@@ -110,6 +110,11 @@
           &:focus {
             background-color: #333;
           }
+
+          &::placeholder {
+            color: rgb(224, 224, 224);
+            font-weight: 300;
+          }
         }
 
         input:-webkit-autofill,

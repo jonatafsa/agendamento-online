@@ -50,7 +50,7 @@ export default function Sign() {
       password
     }
 
-    fetch('/api/insert-new-user', {
+    fetch('http://localhost:3333/insert-new-user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -63,9 +63,11 @@ export default function Sign() {
         res.json().then(data => {
           console.log(data)
 
-          if (res.status === 200) {
+          if (res.status === 201) {
             toast.success('Usuário cadastrado com sucesso!')
-            setLoading(true)
+            setLoading(false)
+            localStorage.setItem('token', data.token)
+            router.replace('/')
           }
 
           if (res.status === 401) {
@@ -94,7 +96,7 @@ export default function Sign() {
       password: password.value
     }
 
-    fetch('/api/login', {
+    fetch('http://localhost:3333/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

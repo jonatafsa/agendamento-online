@@ -1,13 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { stringify } from 'querystring'
 import { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import Footer from '../components/Footer'
 import Nav from '../components/Nav'
 import UserNav from '../components/User-navigation'
 import styles from '../styles/Home.module.scss'
-import variables from '../styles/Variables.module.scss'
 
 interface Days {
   day: number
@@ -36,7 +33,7 @@ export default function Home() {
       window.location.href = '/sign'
     } else {
 
-      fetch('/api/verify-token', {
+      fetch('http://localhost:3333/verify-token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -131,7 +128,6 @@ export default function Home() {
   }
 
   function toggleToSchedule() {
-    console.log(time)
 
     const data = {
       time,
@@ -139,7 +135,7 @@ export default function Home() {
       sheduleID
     }
 
-    fetch('/api/insert-new-avaliable-time', {
+    fetch('http://localhost:3333/insert-new-available-time', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -147,7 +143,6 @@ export default function Home() {
       body: JSON.stringify(data)
     }).then(res => res.json())
       .then(data => {
-        console.log(data.error)
 
         if (data.error) {
           toast.error(data.message)
@@ -156,23 +151,26 @@ export default function Home() {
 
         const span = document.createElement('span')
         span.innerHTML = data.avaliableTime.time
+        span.classList.add('temporary')
         document.querySelector(`.${styles.shedule}`)!.append(span)
 
       })
   }
 
   function setDayToSchedule(day: number, e: any) {
-    const days = document.querySelectorAll('[data-id="span-day"]')
+    const days = document.querySelectorAll('[data-id="span-day"]').forEach(day => {
+      day.classList.remove(styles.selected)
+    })
+
+    document.querySelectorAll('.temporary').forEach((item: any) => {
+      item.style.display = "none"
+    })
 
     document.querySelectorAll('[data-id="hours"]').forEach(item => {
       item.classList.remove(styles.selected)
       item.classList.remove(styles.deleted)
     })
     document.querySelector(`.${styles.buttons}`)?.classList.add(styles.buttonsEndHide)
-
-    days.forEach(day => {
-      day.classList.remove(styles.selected)
-    })
 
     if (new Date(year, month - 1, day) < new Date()) {
       setDay(0)
@@ -187,11 +185,7 @@ export default function Home() {
       refreshToken: localStorage.getItem('refreshToken')
     }
 
-
-    console.log(new Date(2022, month - 1, day))
-
-
-    fetch('/api/insert-new-schedule', {
+    fetch('http://localhost:3333/insert-new-schedule', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -201,7 +195,6 @@ export default function Home() {
       .then(data => {
         setAvaliableTimes(data.schedule.availableTimes)
         setSheduleID(data.schedule.id)
-        console.log(data)
       })
   }
 
@@ -212,7 +205,6 @@ export default function Home() {
     e.target.classList.add(styles.selected)
 
     setHourId(item.id)
-    console.log(item.id)
   }
 
   function closeOverlay() {
@@ -225,21 +217,27 @@ export default function Home() {
   function confirmExclusion() {
 
     const data = { hourId, refreshToken: localStorage.getItem('refreshToken') }
-    console.log(data)
 
-    fetch('/api/delete-avaliable-time', {
-      method: 'POST',
+    fetch('http://localhost:3333/delete-available-time', {
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
-    }).then(res => res.json())
-      .then(data => {
+    }).then(res => {
+      if (res.status === 200) {
         document.querySelector(`#${hourId}`)!.classList.add(styles.deleted)
         setHourId('')
         closeOverlay()
         toast.success('Horário excluído com sucesso!')
-      })
+      }
+
+      if (res.status === 500) {
+        setHourId('')
+        closeOverlay()
+        toast.error('Problemas ao tentar excluir esse horário, consulte o ADM.')
+      }
+    })
   }
 
   return (
