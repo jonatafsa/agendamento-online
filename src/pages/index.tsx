@@ -29,29 +29,29 @@ export default function Home() {
     const token = localStorage.getItem('token')
     const url = window.location.href
 
-    if (!token) {
-      window.location.href = '/sign'
-    } else {
+    // if (!token) {
+    //   window.location.href = '/sign'
+    // } else {
 
-      fetch('http://localhost:3333/verify-token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ token, requestID: url })
-      })
-        .then(res => {
-          if (res.status === 401) {
-            localStorage.removeItem('token')
-            window.location.href = '/sign'
-          }
+    //   fetch('http://localhost:3333/verify-token', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({ token, requestID: url })
+    //   })
+    //     .then(res => {
+    //       if (res.status === 401) {
+    //         localStorage.removeItem('token')
+    //         window.location.href = '/sign'
+    //       }
 
-          return res.json()
-        })
-        .then(data => {
-          localStorage.setItem('refreshToken', data.refreshToken)
-        })
-    }
+    //       return res.json()
+    //     })
+    //     .then(data => {
+    //       localStorage.setItem('refreshToken', data.refreshToken)
+    //     })
+    // }
   }, [])
 
   useEffect(() => {
