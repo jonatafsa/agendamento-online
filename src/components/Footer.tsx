@@ -3,7 +3,7 @@ import styles from '../styles/Footer.module.scss'
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <p>© 2022 todos os direitos reservados <b>JS-W Portal</b></p>
+      <p>© {new Date().getFullYear()} todos os direitos reservados <b>CT MUAY THAI GIRLS</b></p>
       <div className={styles.links}>
         <a href="#">Termos de uso</a>
         <a href="#">Política de privacidade</a>
